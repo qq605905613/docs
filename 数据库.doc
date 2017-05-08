@@ -1,0 +1,107 @@
+172.16.51.101 测试数据库
+172.16.51.102 正式数据库
+只能查询的user op_mgmmn op_mgmmn
+能够idu user op_mgmap op_mgmap
+101:能够建表的user   op_staad
+102: user db2inst 
+linux 连接数据 db2 connect to opstadb user op_mgmap
+导出表 db2 "export to q2q.csv of del select * from temp.tbl_temp_lm_mchnt_cd "
+ db2 "export to  1228new.csv of del select * from mmgm.TBL_MMGM_BATCH_MCHNT_INFO"
+
+
+"import from ${MCHNT_LIST_DEL} of del
+modified by usedefaults commitcount 50000
+121 replace into disc.tbl_temp_delay_mchnt(SEQ_ID,ACQ_INS_ID_CD,ACQ_INS_ID_NM,MCHNT_CD,MCHNT_CN_NM,MCHNT_TP,CUP_BRANCH_INS_ID_CD,SPEC_DISC_TP_LVL,CUP_RPOFIT_ALGO,ACPT_INS_ID_CD)"
+//
+$ db2 "import from q2q.csv of del modified by usedefaults commitcount 50000 replace into temp.tbl_temp_mchnt_cd(mchnt_cd,mchnt_cn_nm
+
+
+101 102通用：args 数据字典表        拒绝原因配置表
+									TBL_ARGS_REASON_TYPE
+
+101       :DICDAT
+			TBL_DICDAT_DATA_DIC 分公司代码表
+			TBL_DICDAT_DIM_INS  收单机构
+ 
+DISC.TBL_DISC_BATCH_MCHNT 批量现场注册名单表
+     TBL_DISC_DELAY_MCHNT 存量延期优惠 m,kl类名单表 IS_TRANS_RECORD 是否纳入存量优惠名单
+
+TMPDAT.TBL_TMPDAT_MCHNT_INFO_1019
+截止10月19日商户信息表
+
+
+102
+
+MMGM.TBL_MMGM_AUDIT_TASK 待审任务列表
+     TBL_MMGM_TASK_ASSIGN 已分派任务列表
+     TBL_MMGM_REJECT_REASON 拒绝原因记录表
+     TBL_MMGM_QUALITY_INSPECT 质检表
+     TBL_MMGM_AUDIT_USER 用户表
+
+
+MGMHIS.TBL_MGMHIS_AUDITED_MCHNT 已通过任务表（全量）
+
+TEMP.TBL_TEMP_MCHNT_CD 临时表
+
+MCHNT_CD 商户代码
+MCHNT_CN_NM 商户名称
+ACQ_INS_ID_CD 收单机构代码
+ACPT_INS_ID_CD 受理机构代码
+CUP_BRANCH_INS_ID_CD 所属分公司代码
+CONN_MD 直间联
+MCHNT_TP MCC
+SPEC_DISC_TP 特殊计费类型
+SPEC_DISC_LVL 特殊计费档次
+IS_WHTIE_MCHNT 白名单
+AUDIT_ST  审核状态（4分公司四审 f总公司一审 g总公司二审 ）
+ACTUAL_DONE_TS 实际完成时间 
+TASK_RESULT 任务状态 0 通过 2 拒绝 3 正在审核中 4 挂起 
+MCHNT_RATING 通过的评分
+PENDING_MEMO 挂起原因 
+MCHNT_SRV_TP 商户服务类型
+MCHNT_ST 商户状态 （0 注销  2 冻结 ）
+
+vivian（vivian@rriinn.com）和徐经理（xuyangping@rriinn.com）并抄送张岩经理（yan.zhang_neu@neusoft.com）和梁爱馨（liangax@neusoft.com）
+MCHNT_SRV_TP as 商务服务类型,
+MCHNT_CD as 商户代码,
+ MCHNT_CN_NM as 商户名称,
+ ACQ_INS_ID_CD as 收单机构代码,
+ ACPT_INS_ID_CD as 受理机构代码,
+   CUP_BRANCH_INS_ID_CD as 所属公司代码,
+   case 
+    when CONN_MD='I' then '间联'
+    when CONN_MD in ('S','P') then '直联'
+    else '异常值'
+    end as 直间联,
+    MCHNT_TP as MCC,
+    SPEC_DISC_LVL as 特殊计费档次
+      MCHNT_CD as 商户代码,
+ MCHNT_CN_ABBR as 商户经营名称,
+   MCHNT_CN_NM as 商户名称,
+   ACQ_INS_ID_CD as 收单机构代码,
+   ACPT_INS_ID_CD as 受理机构代码,
+   FWD_INS_ID_CD as 发送机构代码,
+   CUP_BRANCH_INS_ID_CD as 所属分公司代码,
+ case 
+    when CONN_MD='I' then '间联'
+    when CONN_MD in ('S','P') then '直联'
+    else '异常值'
+    end as 直间联,
+  case
+        when  MCHNT_TP in ('8651','9211','9222','9223','9311','9399')
+        then '特殊计费类'
+        when  MCHNT_TP in ('5411','4900','5541','5542','4111','4121','4131','4511','4784') 
+        then '优惠类'
+        when  MCHNT_TP in ('8062','8011','8021','8031','8041','8042','8049','8099','8211','8220','8351','8241','8398') 
+        then '减免类'
+        else '标准类'
+    end as 价格类型,
+   SPEC_DISC as 特殊计费类型档次,
+   IS_WHITE_MCHNT as 白名单,
+   D_ALLOT_CD as 借记算法,
+   C_ALLOT_CD as 贷记算法   from tmpdat.TBL_TMPDAT_MCHNT_INFO_1110 where MCHNT_CD not in ( select MCHNT_CD from  temp.TBL_TEMP_MCHNT_CD ) 
+   
+   function main()
+   mac = getWifiMAC()
+   toast(mac);
+   end 

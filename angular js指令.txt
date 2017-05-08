@@ -1,0 +1,1 @@
+ng-repeat 循环指令迭代元素 demo：'ng-reeat "x in recods" recods[数组]'

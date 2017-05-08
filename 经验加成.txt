@@ -1,0 +1,30 @@
+
+
+
+ /nfs/DetailData/WAR/20161109/MchntAudit.war
+ cd home/apache/logs/
+ select * from disc.tbl_disc_delay_mchnt where substr(match_acq_cd,5,2)='01' 拆分字段
+'08'|| 拼接字段
+[liming@YWYYZX03 logs]$ vi info.log
+[liming@YWYYZX03 logs]$ vi info.log
+[liming@YWYYZX03 logs]$ vi info.log
+cat *.csv  > full.csv  合并多个csv
+import from mchnt_inf_1227.csv of del modified by usedefaults commitcount 50000 replace into tmpdat.tbl_tmpdat_mchnt_info_1228
+select 1 form table 表示存在的
+sudo apt-get install nfs-common 挂载nfs前的依赖
+tar   解压命令.Z
+tar  -xzvf 解压命令.Z
+tar -zcvf 打包命令.Z
+ iconv -c -f gb2312 -t utf-8 $EXPORT_TS.csv > $EXPORT_TS.csv
+db2 "import from /dev/null of del replace into tmpdat.tbl_tmpdat_mchnt_info_1210" //清表的命令
+iconv -f iso-8859-1 -t utf-8 input.txt  转换文本的格式
+ sed 's/$/\r/'unixfile.txt > dosfile.txt // unix 转dos
+
+1、创建索引SQL
+db2 "CREATE INDEX MMGM.IND_MMGM_AT_I4 ON MMGM.TBL_MMGM_AUDIT_TASK ( COMMISSION_TP )"
+2、索引数据更新（需要中断应用进行操作）
+db2 runstats on table MMGM.TBL_MMGM_AUDIT_TASK with distribution and detailed indexes all
+
+cp  mmgm.tbl_mmgm_mchnt_audit_info.201612*.del.gz .
+du -h --max-depth=1 查看文件的大小
+ db2 "import from full.csv of del modified by usedefaults commitcount 50000 insert into mmgm.TBL_MMGM_BATCH_MCHNT_INFO(MCHNT_SRV_TP,mchnt_cd)" 导入数据
